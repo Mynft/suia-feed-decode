@@ -1,9 +1,7 @@
-import {DecodeSuiaProject} from "./projects/suia";
+import {DecodeSuiaProject, SuiaExample} from "./projects/suia";
 
 async function main() {
-  // let suiaInfo = await DecodeSuiaProject("4H8PWBZvYzSh9AspJjFvYYiSKzoWu4irHpX4vjf852jp");
-  let suiaInfo = await DecodeSuiaProject("6k1Mfx9FprEA52cNbFcLx8VPk3QMjLDboHE6cr8AcSDV");
-  console.log(suiaInfo);
+  await SuiaExample();
 }
 
 main()

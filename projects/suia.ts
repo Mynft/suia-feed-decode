@@ -10,6 +10,9 @@ const FunctionShowMap: Record<string, string> = {
   "claim_medal": "claim_suia",
 };
 
+const create_medal_tx = "4H8PWBZvYzSh9AspJjFvYYiSKzoWu4irHpX4vjf852jp";
+const claim_medal_tx = "6k1Mfx9FprEA52cNbFcLx8VPk3QMjLDboHE6cr8AcSDV";
+
 export async function DecodeSuiaProject(tx: string): Promise<NftFeed> {
   let txResp = await client.getTransactionBlock(
       {
@@ -48,4 +51,11 @@ export async function DecodeSuiaProject(tx: string): Promise<NftFeed> {
     };
   }
   return {Sender: "", ActionName: "", ImgUrl: "", NftName: "",};
+}
+
+export async function SuiaExample() {
+  console.log(await DecodeSuiaProject(create_medal_tx));
+  console.log("=======================================================================================================================================");
+  console.log(await DecodeSuiaProject(claim_medal_tx));
+
 }
