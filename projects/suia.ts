@@ -17,12 +17,7 @@ export async function DecodeSuiaProject(tx: string): Promise<NftFeed> {
   let txResp = await client.getTransactionBlock(
       {
         digest: tx,
-        options: {
-          showInput: true,
-          showEffects: false,
-          showEvents: false,
-          showObjectChanges: false,
-        }
+        options: {showInput: true, showEffects: false, showEvents: false, showObjectChanges: false}
       }
   );
   let transaction = ((txResp.transaction as SuiTransactionBlock).data.transaction as any);
