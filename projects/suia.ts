@@ -36,7 +36,7 @@ export async function DecodeSuiaProject(tx: string): Promise<NftFeed> {
   } else if (actionName == "claim_suia") {
     let objInfo = await client.getObject({
       id: transaction.inputs[0].objectId,
-      options: {"showContent": true, "showDisplay": true, "showOwner": true, "showPreviousTransaction": true, "showStorageRebate": true, "showType": true}
+      options: {showContent: true, showDisplay: true, showOwner: true, showPreviousTransaction: true, showStorageRebate: true, showType: true}
     });
     return {
       Sender: (txResp.transaction as SuiTransactionBlock).data.sender,
@@ -52,5 +52,4 @@ export async function SuiaExample() {
   console.log(await DecodeSuiaProject(create_medal_tx));
   console.log("=======================================================================================================================================");
   console.log(await DecodeSuiaProject(claim_medal_tx));
-
 }
