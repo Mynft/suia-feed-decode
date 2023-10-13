@@ -30,14 +30,14 @@ export async function DecodeSuiaProject(tx: string): Promise<NftFeed> {
   }
 
   let actionName = FunctionShowMap[transaction.transactions[0].MoveCall.function.toString()];
-  if (actionName == "create_suia") {
+  if (actionName == "create suia") {
     return {
       Sender: (txResp.transaction as SuiTransactionBlock).data.sender,
       ActionName: actionName,
       ImgUrl: transaction.inputs[5].value,
       NftName: transaction.inputs[1].value,
     };
-  } else if (actionName == "claim_suia") {
+  } else if (actionName == "claim suia") {
     let objInfo = await MainClient.getObject({
       id: transaction.inputs[0].objectId,
       options: {
