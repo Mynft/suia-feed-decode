@@ -16,7 +16,12 @@ const claim_medal_tx = "6k1Mfx9FprEA52cNbFcLx8VPk3QMjLDboHE6cr8AcSDV";
 export async function DecodeSuiaProject(tx: string): Promise<NftFeed> {
   let txResp = await MainClient.getTransactionBlock({
         digest: tx,
-        options: {showInput: true, showEffects: false, showEvents: false, showObjectChanges: false}
+        options: {
+          showInput: true,
+          showEffects: false,
+          showEvents: false,
+          showObjectChanges: false
+        }
       }
   );
   let transaction = ((txResp.transaction as SuiTransactionBlock).data.transaction as any);
@@ -35,7 +40,13 @@ export async function DecodeSuiaProject(tx: string): Promise<NftFeed> {
   } else if (actionName == "claim_suia") {
     let objInfo = await MainClient.getObject({
       id: transaction.inputs[0].objectId,
-      options: {showContent: true, showDisplay: true, showOwner: true, showPreviousTransaction: true, showStorageRebate: true, showType: true}
+      options: {
+        showContent: true,
+        showDisplay: true,
+        showOwner: true,
+        showPreviousTransaction: true,
+        showStorageRebate: true, showType: true
+      }
     });
     return {
       Sender: (txResp.transaction as SuiTransactionBlock).data.sender,
