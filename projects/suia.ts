@@ -1,4 +1,4 @@
-import {client, NftFeed} from "./common";
+import {MainClient, NftFeed} from "./common";
 import {DisplayFieldsResponse, SuiTransactionBlock} from "@mysten/sui.js/src/client/types/generated";
 
 const suiaMainPackages = [
@@ -14,9 +14,10 @@ const create_medal_tx = "4H8PWBZvYzSh9AspJjFvYYiSKzoWu4irHpX4vjf852jp";
 const claim_medal_tx = "6k1Mfx9FprEA52cNbFcLx8VPk3QMjLDboHE6cr8AcSDV";
 
 export async function DecodeSuiaProject(tx: string): Promise<NftFeed> {
-  let txResp = await client.getTransactionBlock({
+  let txResp = await MainClient.getTransactionBlock({
         digest: tx,
-        options: {showInput: true, showEffects: false, showEvents: false, showObjectChanges: false}}
+        options: {showInput: true, showEffects: false, showEvents: false, showObjectChanges: false}
+      }
   );
   let transaction = ((txResp.transaction as SuiTransactionBlock).data.transaction as any);
   if (!suiaMainPackages.includes(transaction.transactions[0].MoveCall.package)) {
@@ -32,7 +33,7 @@ export async function DecodeSuiaProject(tx: string): Promise<NftFeed> {
       NftName: transaction.inputs[1].value,
     };
   } else if (actionName == "claim_suia") {
-    let objInfo = await client.getObject({
+    let objInfo = await MainClient.getObject({
       id: transaction.inputs[0].objectId,
       options: {showContent: true, showDisplay: true, showOwner: true, showPreviousTransaction: true, showStorageRebate: true, showType: true}
     });
