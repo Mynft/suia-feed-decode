@@ -6,8 +6,8 @@ const suiaMainPackages = [
 ];
 
 const FunctionShowMap: Record<string, string> = {
-  "create_medal": "create_suia",
-  "claim_medal": "claim_suia",
+  "create_medal": "create suia",
+  "claim_medal": "claim suia",
 };
 
 const create_medal_tx = "4H8PWBZvYzSh9AspJjFvYYiSKzoWu4irHpX4vjf852jp";
